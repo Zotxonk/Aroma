@@ -174,10 +174,11 @@ export default function App() {
             </div>
           )}
           <div className="flex items-center flex-shrink-0">
-            <button onClick={() => setIsCartOpen(true)} className="relative flex items-center gap-2 hover:opacity-60 transition-opacity group">
+            {/* Dodano pr-3 żeby odsunąć licznik od tekstu i -right-0 dla lepszej pozycji */}
+            <button onClick={() => setIsCartOpen(true)} className="relative flex items-center gap-2 pr-3 hover:opacity-60 transition-opacity group">
               <i className="ph ph-shopping-bag text-2xl"></i>
               <span className="font-['Montserrat'] font-bold text-sm uppercase hidden sm:block">Koszyk</span>
-              <span className="absolute -top-1 -right-2 w-5 h-5 flex items-center justify-center text-[10px] font-bold text-white bg-[#111111] rounded-full">{iloscWKoszyku}</span>
+              <span className="absolute -top-1 -right-0 w-5 h-5 flex items-center justify-center text-[10px] font-bold text-white bg-[#111111] rounded-full">{iloscWKoszyku}</span>
             </button>
           </div>
         </div>
@@ -270,11 +271,11 @@ export default function App() {
               <div className="inline-block bg-[#111111] text-white font-['Montserrat'] font-bold text-[10px] uppercase tracking-widest px-3 py-1 mb-4 md:mb-6">
                 Nowe zbiory
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-['Montserrat'] font-black tracking-tighter leading-[1.1] mb-6 uppercase break-words w-full">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-['Montserrat'] font-black tracking-tighter leading-[1.1] mb-6 uppercase w-full">
                 Kawa <br className="hidden md:block"/> bez <br className="hidden md:block"/> kompromisów
               </h1>
               <p className="text-gray-600 text-base md:text-lg mb-8 max-w-md">
-                Jasno palone ziarna segmentu specialty. Świeży profil smakowy, czysta obróbka. Wypalane w Polsce.
+                Jasno palone ziarna segmentu specialty. Świeży profil smakowy, czysta obróbka. Wypalane w&nbsp;Polsce.
               </p>
               <button onClick={() => scrollToSection('kawa')} className="inline-block w-full md:w-auto bg-[#111111] text-white font-['Montserrat'] font-bold text-sm uppercase tracking-widest py-4 px-10 hover:bg-gray-800 transition-colors">
                 Wybierz Ziarna
@@ -523,7 +524,6 @@ const handleFormSubmit = (e) => {
                   <label className="flex items-center gap-4 border border-[#111111] p-4 cursor-pointer bg-[#F5F5F5]/30">
                     <input type="radio" name="platnosc" defaultChecked className="accent-[#111111] w-4 h-4" />
                     <span className="font-['Montserrat'] font-bold text-sm uppercase flex items-center gap-2">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Blik_logo.svg" alt="BLIK" className="h-4" />
                       BLIK
                     </span>
                   </label>
@@ -595,14 +595,22 @@ const handleFormSubmit = (e) => {
           <div className="prose prose-lg text-gray-600 leading-relaxed space-y-10">
             <section>
               <h2 className="text-2xl font-['Montserrat'] font-black uppercase tracking-tight text-[#111111] mb-4">1. Postanowienia Ogólne</h2>
-              <p>Niniejsza polityka prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem z usług sklepu internetowego Aroma Roastery.</p>
+              <p>Niniejsza polityka prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem z usług sklepu internetowego Aroma Roastery. Szanujemy Twoją prywatność i dbamy o to, by Twoje dane były u nas całkowicie bezpieczne i przetwarzane zgodnie z prawem (w tym z RODO).</p>
             </section>
             <section>
               <h2 className="text-2xl font-['Montserrat'] font-black uppercase tracking-tight text-[#111111] mb-4">2. Jakie dane zbieramy i dlaczego?</h2>
               <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Realizacja zamówień:</strong> Imię, nazwisko, adres wysyłki, numer telefonu, adres e-mail.</li>
+                <li><strong>Realizacja zamówień:</strong> Imię, nazwisko, adres wysyłki, numer telefonu, adres e-mail. Bez tych danych nie moglibyśmy wysłać do Ciebie zamówienia.</li>
                 <li><strong>Konto użytkownika:</strong> Jeśli zdecydujesz się założyć u nas konto, przechowujemy historię Twoich zamówień.</li>
               </ul>
+            </section>
+            <section>
+              <h2 className="text-2xl font-['Montserrat'] font-black uppercase tracking-tight text-[#111111] mb-4">3. Komu udostępniamy dane?</h2>
+              <p>Nie sprzedajemy Twoich danych. Przekazujemy je jedynie sprawdzonym podmiotom zewnętrznym, które pomagają nam w dostarczeniu Twojego zamówienia. Są to firmy kurierskie (np. InPost, DPD) oraz operatorzy płatności.</p>
+            </section>
+            <section>
+              <h2 className="text-2xl font-['Montserrat'] font-black uppercase tracking-tight text-[#111111] mb-4">4. Twoje Prawa</h2>
+              <p>Masz prawo do żądania od administratora dostępu do swoich danych osobowych, ich sprostowania, usunięcia lub ograniczenia przetwarzania.</p>
             </section>
           </div>
         </div>
@@ -616,10 +624,10 @@ const handleFormSubmit = (e) => {
       <Navbar />
       <CartDrawer />
       
-      {currentView === 'home' && <HomeView />}
-      {currentView === 'product' && <ProductView />}
-      {currentView === 'kasa' && <CheckoutView />}
-      {currentView === 'polityka' && <PrivacyPolicyView />}
+      {currentView === 'home' && HomeView()}
+      {currentView === 'product' && ProductView()}
+      {currentView === 'kasa' && CheckoutView()}
+      {currentView === 'polityka' && PrivacyPolicyView()}
 
       <Footer />
 

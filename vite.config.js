@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// ZMIEŃ 'aroma-sklep' na dokładną nazwę Twojego repozytorium na GitHubie!
 export default defineConfig({
   plugins: [react()],
+  base: '/Aroma/', 
 })
